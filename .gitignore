@@ -20,3 +20,6 @@
 
 # Ignore vendor bundle
 /vendor/bundle
+
+# Ignore Gemfile.lock file
+Gemfile.lock
