@@ -1,4 +1,5 @@
 
+
 #header + .header-placeholder {
   display: block;
   height: 120px;
@@ -10,7 +11,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(73,109,137, 0.95);
+  background: rgba(65,129,127, 0.70);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -22,7 +23,7 @@
 }
 
 #header .nav {
-  background: rgba(4,32,55,0.95);
+  background: rgba(0,51,51,0.95);
 }
 
 #header .nav::after {
