@@ -1,0 +1,135 @@
+
+#header + .header-placeholder {
+  display: block;
+  height: 120px;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(73,109,137, 0.95);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#header .banner a, #header .banner a img {
+  display: block;
+  padding: 0;
+  margin: 10px 0;
+  height: 60px;
+}
+
+#header .nav {
+  background: rgba(4,32,55,0.95);
+}
+
+#header .nav::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+#header .nav .right-nav {
+  float: right;
+}
+#header .nav .left-nav {
+  float: left;
+}
+#header .nav .item {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 1rem;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  color: white;
+  transition: all 250ms ease;
+  cursor: pointer;
+}
+#header .nav .logo-text {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 1rem;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 700;
+  background: none;
+  color: white;
+  transition: all 250ms ease;
+}
+
+
+#header .nav .item:hover {
+  background: rgba(80, 80, 80, 0.95);
+}
+
+#header .nav .item.has-submenu:hover {
+  background: rgba(220, 220, 220, 0.95);
+  color: black;
+}
+
+#header .nav .item .icon-left {
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+}
+
+#header .nav .item .icon-right {
+  display: inline-block;
+  margin: 0 0 0 0.5em;
+}
+
+#header .nav .submenu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  padding-bottom: 3px;
+  min-width: 100%;
+  max-height: 20px;
+  background: rgba(220, 220, 220, 0.95);
+  box-shadow: 0px  5px 5px -3px  rgba(0, 0, 0, 0.25),
+              -5px 3px 5px -3px  rgba(0, 0, 0, 0.25),
+              5px  3px 5px -3px  rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 500ms ease;
+  overflow: hidden;
+}
+
+#header .nav .submenu::after {
+  content: " ";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(40, 40, 40, 0.9);
+}
+
+#header .nav .item:hover .submenu {
+  max-height: 183px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#header .nav .submenu .item {
+  height: 36px;
+  line-height: 36px;
+  color: #444;
+  font-size: 11px;
+  font-weight: 900;
+  display: block;
+  white-space: nowrap;
+  padding-right: 1.5rem;
+}
+
+#header .nav .submenu .item:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
