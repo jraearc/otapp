@@ -1,48 +1,160 @@
-<%= render "layouts/usernavbar" %>
-<header id="home">
-<div class="ui text container">
-  <div class="title">
-  <h1 class="header">Welcome to Online TESDA Application!</h1>
-</div>
-<br>
-<div class="ui form">
-  <div class="field">
-    <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Search for schools...">
-    <i class="search icon"></i>
-  </div>
-  <div class="inline fields">
-      <div class="inline fields">
-    <label for="fruit">Search by:</label>
+<header id="landing">
+<div class="ui grid container">
+    <div class="eight wide column">
+          <div class="landing-page relative-position">
+            <div class="ui center aligned container">
+              <img src="https://img00.deviantart.net/8ef2/i/2012/325/e/c/8_bit_sprites__nyan_cat_by_toshirofrog-d4hzdrp.png" height="150px" alt="">
+              <p class="semibold paragraph">OTapp is an online TESDA application system for aspiring students. The goal of this website is to aid people who would like to enroll to TESDA by making the application process more efficient through doing it online. Same quality of education for a less hassle application experience.</p>
+            </div>
+          </div>
+        </div>
+        <!--crucial!! data tabs of log in and sign up changed because of gray part-->
+        <div class="eight wide column">
+          <div class="ui top attached tabular menu">
+            <a class="item active" data-tab="first"><h3>Sign In</h3></a>
+            <a class="item" data-tab="second" onClick="signUp()"><h3>Register</h3></a>
+          </div>
+          <div class="ui bottom attached tab segment active" data-tab="first">
+            <form class="ui form">
+              <div class="inline fields">
+    <label for="fruit">Sign in as:</label>
     <div class="field">
       <div class="ui radio checkbox">
         <input type="radio" name="search" checked="" tabindex="0" class="hidden">
-        <label>School</label>
+        <label>Admin</label>
       </div>
     </div>
     <div class="field">
       <div class="ui radio checkbox">
         <input type="radio" name="search" tabindex="0" class="hidden">
-        <label>Course</label>
+        <label>Student</label>
       </div>
     </div>
   </div>
-</div>
-
-  <div class="ui raised segments">
-    <div class="ui padded segment">
-      <div class="ui header"> <a href="#">Marikina Science High School</a></div>
-      <p>Chanyungco St., Sta. Elena, Marikina City</p>
-    </div>
-    <div class="ui padded segment" href="">
-      <div class="ui header"><a href="#">Marikina Polytechnic School</a></div>
-      <p>Chanyungco St., Sta. Elena, Marikina City</p>
-    </div>
-    <div class="ui padded segment">
-      <div class="ui header"><a href="#">UP Diliman</a></div>
-      <p> Diliman, Quezon City</p>
-    </div>
+  <div class="field">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="johndoe@gmail.com">
   </div>
-
+  <div class="field">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="password">
+  </div>
+  <button class="fluid ui green button pull-right" type="submit">Sign in</button>
+</form>
+          </div>
+          <div class="ui bottom attached tab segment" data-tab="second">
+                  
+              <div class="sign-up-form form-padding">
+              <div class="fluid ui buttons">
+  <button class="ui teal button"  onClick="signUpAdmin()">Admin</button>
+  <div class="or"></div>
+  <button class="ui blue button"  onClick="signUpStudent()">Student</button>
 </div>
+              </div>
+              <div class="form-padding-signup" style="display: none;">
+                <div class="signup-admin" style="display: none;">
+                  <p style="text-align: right;">Admin</p>
+                  <div class="ui form">
+                      <div class="field">
+                        <label>Full Name</label>
+                        <input placeholder="John Doe" name="admin_name" type="text">
+                      </div>
+                      <div class="field">
+                        <label>School Position</label>
+                        <input placeholder="Principal" name="school_pos" type="text">
+                      </div>
+                      <div class="field">
+                        <label>Username</label>
+                        <input placeholder="johndoe" name="admin_username" maxlength="9" type="text">
+                      </div>
+                        <div class="field">
+                        <label>Email</label>
+                        <input placeholder="johndoe@gmail.com" name="admin_email" type="text">
+                      </div>
+                      <div class="field">
+                        <label>Password</label>
+                        <input placeholder="password" name="admin_password"  type="password">
+                      </div>
+                    <div class="center">
+                      <button class="fluid ui blue button">Create Account</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="signup-student" style="display: none;">
+                    <p style="text-align: right; ">Student
+                    <div class="ui form">
+                      <div class="fields">
+                        <div class="ten wide field">
+                          <div class="field">
+                            <label>Full Name</label>
+                            <input placeholder="John Doe" name="stud_name" type="text">
+                          </div>
+                        </div>
+                        <div class="six wide field">
+                          <div class="field">
+                            <label>Birthdate</label>
+                            <input placeholder="1997-10-18" name="stud_bday" type="text">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fields">
+                        <div class="ten wide field">                      
+                          <div class="field">
+                            <label>Address</label>
+                            <input placeholder="#30 Kalayaan Dormitory, Diliman, Quezon City" name="stud_address" type="text">
+                          </div>
+                        </div>
+                        <div class="six wide field">
+                          <div class="field">
+                            <label>Civil Status</label>
+                            <input placeholder="Single" name="stud_civil" type="text">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label>Username</label>
+                        <input placeholder="johndoe" name="stud_username" maxlength="9" type="text">
+                      </div>
+                        <div class="field">
+                        <label>Email</label>
+                        <input placeholder="johndoe@gmail.com" name="stud_email" type="text">
+                      </div>
+                      <div class="field">
+                        <label>Password</label>
+                        <input placeholder="password" name="stud_password"  type="password">
+                      </div>
+                      <div class="center">
+                      <button class="fluid ui blue button">Create Account</button>
+                    </div>
+                </div>
+              </div>
+          
+          </div>
+        </div>
 </header>
+<script>
+$(document).ready(function() {
+  $('.menu .item').tab();
+});
+function signUpAdmin() {
+  $('.signup-admin').css("display", "block");
+  $('.signup-student').css("display", "none");
+  $('.sign-up-form').css("display", "none");
+  $('.form-padding-signup').css("display", "block");
+}
+
+function signUpStudent(){
+  $('.signup-student').css("display", "block");
+  $('.signup-admin').css("display", "none");
+  $('.sign-up-form').css("display", "none");
+  $('.form-padding-signup').css("display", "block"); 
+}
+
+function signUp(){
+  $('.sign-up-form').css("display", "block");
+  $('.signup-admin').css("display", "none");
+  $('.signup-student').css("display", "none");
+  $('.form-padding-signup').css("display", "none");
+}
+
+</script>
