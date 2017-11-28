@@ -1,0 +1,58 @@
+<!--My Applications (User)-->
+<%= render "layouts/usernavbar" %>
+<header id="profile">
+<div class="ui grid container">
+    <div class="four wide column">
+      <div class="ui card">
+      <div class="image">
+        <img src="/assets/avatar.png">
+      </div>
+      <div class="content">
+        <a class="header">Abby del Castillo</a>
+        <div class="meta">
+          <span class="username">@abbydc</span>
+        </div>
+        <div class="description">
+          abby1097@gmail.com
+        </div>
+      </div>
+    </div>
+    <button class="fluid ui blue button"><i class="plus icon"></i>New Application</button>
+</div>
+<div class="twelve wide column">
+  <h1 class="text">My Applications</h1>
+  <div class="ui divider"></div>
+    <table class="ui celled table">
+  <thead>
+    <tr>
+      <th>School</th>
+      <th>Course</th>
+      <th>Status</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UP Diliman</td>
+      <td>Web Development I</td>
+      <td class="warning"><i class="attention icon"></i>Pending</td>
+      <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+    </tr>
+    <tr>
+      <td>Marikina Polytechnic School</td>
+      <td>Culinary Arts II</td>
+      <td class="positive"><i class="check circle icon"></i>Accepted</td>
+            <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+    </tr>
+     <tr>
+      <td>Marikina Science School</td>
+      <td>Basic Mechanics</td>
+      <td class="negative"><i class="remove circle icon"></i>Rejected</td>
+            <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+</header>
