@@ -11,7 +11,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(65,129,127, 1);
+  background: #066A95;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -23,7 +23,7 @@
 }
 
 #header .nav {
-  background: rgba(0,51,51,0.95);
+  background: #00212F;
 }
 
 #header .nav::after {

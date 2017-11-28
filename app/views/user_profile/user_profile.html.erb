@@ -13,11 +13,13 @@
           <span class="username">@abbydc</span>
         </div>
         <div class="description">
-          abby1097@gmail.com
+          abby1097@gmail.com<br>
+          Oct. 28, 1997<br>
+          Rancho II, Marikina City<br>
         </div>
       </div>
     </div>
-    <button class="fluid ui blue button"><i class="plus icon"></i>New Application</button>
+    <button class="fluid ui blue button" id="new-app"><i class="plus icon"></i>New Application</button>
 </div>
 <div class="twelve wide column">
   <h1 class="text">My Applications</h1>
@@ -36,19 +38,19 @@
       <td>UP Diliman</td>
       <td>Web Development I</td>
       <td class="warning"><i class="attention icon"></i>Pending</td>
-      <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
     </tr>
     <tr>
       <td>Marikina Polytechnic School</td>
       <td>Culinary Arts II</td>
       <td class="positive"><i class="check circle icon"></i>Accepted</td>
-            <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+            <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
     </tr>
      <tr>
       <td>Marikina Science School</td>
       <td>Basic Mechanics</td>
       <td class="negative"><i class="remove circle icon"></i>Rejected</td>
-            <td><button class="ui small green button">Edit</button> <button class="ui small red button">Cancel</button></td>
+            <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
     </tr>
   </tbody>
 </table>
@@ -56,3 +58,85 @@
 </div>
 
 </header>
+<div class="ui small modal">
+  <i class="close icon"></i>
+  <div class="header">
+    New Application
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="two fields">
+        <div class="field">
+            <label>School</label>
+            <select class="ui search dropdown">
+              <option value="">Select School</option>
+              <option value="1">Marikina Science High School</option>
+              <option value="2">Marikina Polytechnic School</option>
+              <option value="3">UP Diliman</option>
+            </select>
+        </div>
+        <div class="field">
+          <label>Course</label>
+          <select class="ui search dropdown">
+            <option value="">Select Course</option>
+            <option value="1">Basic Mechanics</option>
+            <option value="2">Culinary Arts II</option>
+            <option value="3">Web Development I</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui positive right labeled icon button">
+      Add<i class="plus icon"></i>
+    </div>
+    <div class="ui red button">
+     Cancel
+    </div>
+  </div>
+</div>
+<div class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Course
+  </div>
+  <div class="content">
+    <form class="ui form">
+        <div class="field">
+          <label>Course</label>
+          <select class="ui search dropdown">
+            <option value="">Select Course</option>
+            <option value="1">Basic Mechanics</option>
+            <option value="2">Culinary Arts II</option>
+            <option value="3">Web Development I</option>
+          </select>
+        </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui positive button">
+      Save
+    </div>
+    <div class="ui red button">
+     Cancel
+    </div>
+  </div>
+</div>
+<script>
+   $('#new-app').click(function(){
+      $('.small.modal')
+      .modal('show'); 
+        $('select.dropdown')
+  .dropdown()
+;
+   });
+  $('button[name=edit-btn]').click(function(){
+      $('.tiny.modal')
+      .modal('show'); 
+        $('select.dropdown')
+  .dropdown()
+;
+   });
+
+</script>
