@@ -1,0 +1,128 @@
+<!--My Applications (User)-->
+<%= render "layouts/adminnavbar" %>
+<header id="profile">
+<div class="ui grid container">
+    <div class="four wide column">
+     <div class="ui card">
+      <div class="image">
+        <img src="/assets/school.jpg">
+      </div>
+      <div class="content">
+        <a class="header">Marikina Science High School</a>
+        <div class="description">
+          mshs@gmail.com<br>
+          Chanyungco St., Sta.Elena, Marikina City
+          <br>
+          997-7852
+        </div>
+      </div>
+    </div>
+    <button class="fluid ui blue button" id="new-app"><i class="plus icon"></i>Add Course</button>
+</div>
+
+<div class="twelve wide column">
+  <h1 class="text">Courses Offered</h1>
+  <div class="ui divider"></div>
+    <table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Sector</th>
+      <th>Tuition Fee</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Web Development I</td>
+      <td>IT</td>
+      <td>1200</td>
+      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
+    </tr>
+    <tr>
+      <td>Web Development II</td>
+      <td>IT</td>
+      <td>1200</td>
+      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
+    </tr>
+     <tr>
+      <td>Web Development III</td>
+      <td>IT</td>
+      <td>1200</td>
+      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+</header>
+<div class="ui small modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Add Course
+  </div>
+  <div class="content">
+    <form class="ui form">
+      <div class="one field">
+        <div class="field">
+            <label>Course</label>
+            <select class="ui search dropdown">
+              <option value="">Select School</option>
+              <option value="1">Web Development I</option>
+              <option value="2">Web Development II</option>
+              <option value="3">Web Development III</option>
+            </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui positive right labeled icon button">
+      Add<i class="plus icon"></i>
+    </div>
+    <div class="ui red button">
+     Cancel
+    </div>
+  </div>
+</div>
+
+<div class="ui tiny modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Course
+  </div>
+  <div class="content">
+    <form class="ui form">
+        <div class="field">
+          <label>Tuition Fee</label>
+          <input class="prompt" type="text" placeholder="Enter new tuition fee...">
+        </div>
+    </form>
+  </div>
+  <div class="actions">
+    <div class="ui positive button">
+      Save
+    </div>
+    <div class="ui red button">
+     Cancel
+    </div>
+  </div>
+</div>
+<script>
+   $('#new-app').click(function(){
+      $('.small.modal')
+      .modal('show'); 
+        $('select.dropdown')
+  .dropdown()
+;
+   });
+  $('button[name=edit-btn]').click(function(){
+      $('.tiny.modal')
+      .modal('show'); 
+        $('select.dropdown')
+  .dropdown()
+;
+   });
+
+</script>
