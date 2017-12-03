@@ -73,10 +73,14 @@
                       </div>
                       <div class="field">
                         <label>Password</label>
-                        <input placeholder="password" name="admin_password"  type="password">
+                        <input placeholder="password" name="admin_password" id="AtxtPassword" type="password">
+                      </div>
+                      <div class="field">
+                        <label>Confirm Password</label>
+                        <input placeholder="password" name="admin_password" id="AtxtConfirmPassword" type="password">
                       </div>
                     <div class="center">
-                      <button class="fluid ui blue button">Create Account</button>
+                      <button class="fluid ui blue button" onclick="return AdminValidate()">Create Account</button>
                     </div>
                   </div>
                 </div>
@@ -121,10 +125,14 @@
                       </div>
                       <div class="field">
                         <label>Password</label>
-                        <input placeholder="password" name="stud_password"  type="password">
+                        <input placeholder="password" name="stud_password" id="txtPassword"  type="password">
+                      </div>
+                      <div class="field">
+                        <label>Confirm Password</label>
+                        <input placeholder="password" name="stud_password" id="txtConfirmPassword" type="password">
                       </div>
                       <div class="center">
-                      <button class="fluid ui blue button">Create Account</button>
+                      <button class="fluid ui blue button" onclick="return UserValidate()">Create Account</button>
                     </div>
                 </div>
               </div>
@@ -156,5 +164,22 @@ function signUp(){
   $('.signup-student').css("display", "none");
   $('.form-padding-signup').css("display", "none");
 }
-
+ function UserValidate() {
+        var password = document.getElementById("txtPassword").value;
+        var confirmPassword = document.getElementById("txtConfirmPassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+ function AdminValidate() {
+        var password = document.getElementById("AtxtPassword").value;
+        var confirmPassword = document.getElementById("AtxtConfirmPassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
 </script>
