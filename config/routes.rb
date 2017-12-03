@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # Defines admin pages
   get 'admin/', to: 'admin#admin_home'
   get 'admin/home', to: 'admin#admin_home'
-  get 'admin/settings', to: 'admin#admin_settings'
+  get 'admin/settings', to: 'admin#admin_settings', as: 'admin_settings'
   get 'admin/app_profile', to: 'admin#admin_app_profile'
   get 'admin/courses', to: 'admin#admin_courses'
 
