@@ -1,0 +1,2 @@
+class AdminConfirmation < ApplicationRecord
+end
