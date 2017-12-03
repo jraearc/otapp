@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  # resources :admin_app_profile
-  # resources :admin_courses
-  # resources :admin_home
-  # resources :admin_settings
-  # resources :school_view
-  # resources :user_home
-  # resources :user_profile
-  # resources :user_settings
 
+  # Defines the landing page of the site
   root 'landing#index'
 
-  
+  # Defines admin pages
+  get 'admin/home', to: 'admin#admin_home'
+  get 'admin/settings', to: 'admin#admin_settings'
+  get 'admin/app_profile', to: 'admin#admin_app_profile'
+  get 'admin/courses', to: 'admin#admin_courses'
+
+  # Defines student pages
+  get 'student/home', to: 'student#student_home'
+  get 'student/settings', to: 'student#student_settings'
+  get 'student/profile', to: 'student#student_profile'
+  get 'student/school_view', to: 'student#school_view'
+
 end
