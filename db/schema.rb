@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203062247) do
+ActiveRecord::Schema.define(version: 20171203113719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171203062247) do
     t.string "school_pos"
   end
 
-  create_table "applications", primary_key: "ref_no", id: :integer, default: nil, force: :cascade do |t|
+  create_table "applications", primary_key: "ref_no", id: :integer, default: -> { "nextval('application_seq'::regclass)" }, force: :cascade do |t|
     t.integer "course_id"
   end
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171203062247) do
     t.string "is_received"
   end
 
-  create_table "courses", primary_key: "course_id", id: :integer, default: nil, force: :cascade do |t|
+  create_table "courses", primary_key: "course_id", id: :integer, default: -> { "nextval('course_seq'::regclass)" }, force: :cascade do |t|
     t.string "course_name"
     t.integer "duration"
     t.string "sector"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20171203062247) do
     t.integer "course_offered_id", null: false
   end
 
-  create_table "schools", primary_key: "school_id", id: :integer, default: nil, force: :cascade do |t|
+  create_table "schools", primary_key: "school_id", id: :integer, default: -> { "nextval('school_seq'::regclass)" }, force: :cascade do |t|
     t.string "sname"
     t.string "phone"
     t.string "address"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171203062247) do
     t.string "civil_status"
   end
 
-  create_table "users", primary_key: "userid", id: :integer, default: nil, force: :cascade do |t|
+  create_table "users", primary_key: "userid", id: :integer, default: -> { "nextval('user_seq'::regclass)" }, force: :cascade do |t|
     t.string "username"
     t.string "e_mail"
     t.string "name"

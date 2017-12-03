@@ -1,2 +1,0 @@
-class AdminAppProfileController < ApplicationController
-end
