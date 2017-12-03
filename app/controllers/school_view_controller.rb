@@ -1,0 +1,2 @@
+class SchoolViewController < ApplicationController
+end
