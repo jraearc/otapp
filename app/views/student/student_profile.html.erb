@@ -8,14 +8,15 @@
         <img src=<%=asset_path"avatar.png"%>>
       </div>
       <div class="content">
-        <a class="header">Abby del Castillo</a>
+        <a class="header"><%= @user_student.name%></a>
         <div class="meta">
-          <span class="username">@abbydc</span>
+          <span class="username">@<%= @user_student.username%></span>
         </div>
         <div class="description">
-          abby1097@gmail.com<br>
-          Oct. 28, 1997<br>
-          Rancho II, Marikina City<br>
+          <%= @user_student.e_mail%><br>
+          <%= @stud_deets.birthdate%><br>
+         <%= @stud_deets.address%><br>
+         <%= @stud_deets.civil_status%><br>
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@
     <tr>
       <th>School</th>
       <th>Course</th>
-      <th>Status</th>
+      <th>Received</th>
       <th>Options</th>
     </tr>
   </thead>

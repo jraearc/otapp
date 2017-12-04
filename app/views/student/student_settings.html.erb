@@ -5,24 +5,26 @@
   <h1 class="header">Edit Settings</h1>
 </div>
   <div class="ui divider"></div>
-<form class="ui form">
+<%= form_tag(sessions_path, method: "post", class: "ui form") do %>
     <div class="field">
-    <label>Username</label>
-    <input type="text" name="last-name" placeholder="" value=<%= @user_student.username %>>
+    <%= label_tag(:"Username") %>
+    <%= text_field_tag(:username, "", placeholder: "", value:@user_student.username ) %>
   </div>
   <div class="field">
-    <label>Email</label>
-    <input type="text" name="last-name" placeholder="" value=<%= @user_student.e_mail %>>
+     <%= label_tag(:"Email") %>
+    <%= text_field_tag(:e_mail, "", placeholder: "", value:@user_student.e_mail ) %>
   </div>
     <div class="field">
-    <label>Name</label>
-    <input type="text" name="last-name" placeholder="" value="<%= @user_student.name %>">
+    <%= label_tag(:"Name") %>
+    <%= text_field_tag(:name, "", placeholder: "", value:@user_student.name ) %>
   </div>
   <div class="field">
-    <label>Password</label>
-    <input type="password" name="first-name" placeholder="type your current/new password here">
+    <%= label_tag(:"Password") %>
+    <%= text_field_tag(:password, "", placeholder: "Type your new password here") %>
   </div>
-  <button class="ui button green" type="submit">Save</button>
+  <%= button_tag("Save", class: "ui button green", type: "submit") %>
+  
+  <% end %>
 </form>
 </div>
 </div>
