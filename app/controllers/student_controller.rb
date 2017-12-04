@@ -1,6 +1,11 @@
 class StudentController < ApplicationController
 def student_home
 	@all_schools = School.order(:sname)
+	if params[:search]!=""
+		@all_schools = School.select('school_id,sname, address').where("LOWER(sname) LIKE ? ", "%#{params[:search]}%" )
+  	else
+    	@all_schools = School.order(:sname)
+  	end
 end
 def student_profile
 	@user_student = User.find(cookies[:userid])

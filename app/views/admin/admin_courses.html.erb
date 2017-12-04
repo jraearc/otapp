@@ -85,17 +85,15 @@
     Edit Course
   </div>
   <div class="content">
-    <form class="ui form">
+    <%= form_tag(admin_courses_path, method: "post", class: "ui form") do %>
         <div class="field">
-          <label>Tuition Fee</label>
-          <input class="prompt" type="text" placeholder="Enter new tuition fee...">
+          <%= label_tag(:"Tuition Fee") %>
+          <%= text_field_tag(:tuition_fee, "", placeholder: "Enter new tuition fee...", class: "prompt") %>
         </div>
-    </form>
+    <% end %>
   </div>
   <div class="actions">
-    <div class="ui positive button">
-      Save
-    </div>
+  <%= button_tag("Save", class: "ui positive button", type: "submit") %>
     <div class="ui red button">
      Cancel
     </div>
