@@ -32,7 +32,7 @@
   <div class="ui raised segments">
     <% @all_schools.each do |school| %>
     <div class="ui padded segment">
-      <div class="ui header"> <a href=<%=student_school_view_path"student_school_view"%>> <%= school.sname %></a></div>
+      <div class="ui header"> <a href=<%=student_school_view_path(school.school_id)%>> <%= school.sname %></a></div>
       <p><%= school.address %></p>
     </div>
     <%end%>
@@ -41,3 +41,4 @@
 
 </div>
 </header>
+

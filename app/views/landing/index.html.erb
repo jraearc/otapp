@@ -15,7 +15,7 @@
             <a class="item" data-tab="second" onClick="signUp()"><h3>Register</h3></a>
           </div>
           <div class="ui bottom attached tab segment active" data-tab="first">
-            <form class="ui form" method="post" action=<%=sessions_path %>>
+            <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
           <!--     <div class="inline fields">
                 <label for="fruit">Sign in as:</label>
                 <div class="field">
@@ -32,15 +32,15 @@
                 </div>
               </div> -->
               <div class="field">
-                <label>Email</label>
-                <input type="text" name="e_mail" placeholder="johndoe@gmail.com">
+                <%= label_tag(:"Email") %>
+                <%= text_field_tag(:e_mail, "", placeholder: "johndoe@gmail.com") %>
               </div>
               <div class="field">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="password">
+                <%= label_tag("Password") %>
+                <%= password_field_tag(:password, "", placeholder: "password") %>
               </div>
-              <button class="fluid ui green button pull-right" type="submit">Sign in</button>
-            </form>
+              <%= button_tag("Sign in", class: "fluid ui green button pull-right", type: "submit") %>
+            <% end %>
           </div>
           <div class="ui bottom attached tab segment" data-tab="second">
                   

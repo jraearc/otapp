@@ -25,6 +25,6 @@ Rails.application.routes.draw do
   get 'student/settings', to: 'student#student_settings', as: 'student_settings'
   get 'student/profile', to: 'student#student_profile', as: 'student_profile'
   get 'student/profile/:id', to: 'student#student_profile_id', as: 'student_profile_id'
-  get 'student/school_view', to: 'student#school_view', as: 'student_school_view'
+  get 'student/school_view/:id(.:format)', to: 'student#school_view', as: 'student_school_view'
 
 end
