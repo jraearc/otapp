@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 
 	if @user.present? && @user.authenticate(params[:password])
 	  	cookies.permanent.signed[:username] = @user.username
+	  	cookies[:userid] = @user.userid
 	  	@searchuser_s = Student.where(student_userid: @user.userid)
 	  	@searchuser_a = Admin.where(admin_userid: @user.userid)
 	  	if !@searchuser_s.blank?
