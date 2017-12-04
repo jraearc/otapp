@@ -50,18 +50,11 @@
   </div>
   
     <div class="ui raised segments">
+      <% @applicants.each do |app|%>
       <div class="ui padded segment">
-        <div class="ui header"> <a href=<%=admin_app_profile_path"admin_app_profile"%>>First Name Last Name</a></div>
-        <p>1. Course applied to</p>
+        <div class="ui header"> <a href=<%=admin_app_profile_path"admin_app_profile"%>><%= app.name %></a></div>
       </div>
-      <div class="ui padded segment" href="">
-        <div class="ui header"><a href="#">First Name Last Name2</a></div>
-        <p>1. Course applied to</p>
-      </div>
-      <div class="ui padded segment">
-        <div class="ui header"><a href="#">First Name Last Name3</a></div>
-        <p>1. Course applied to</p>
-      </div>
+      <%end%>
     </div>
   
   </div>
