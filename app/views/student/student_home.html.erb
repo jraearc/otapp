@@ -30,18 +30,13 @@
 </div>
 
   <div class="ui raised segments">
+    <% @all_schools.each do |school| %>
     <div class="ui padded segment">
-      <div class="ui header"> <a href=<%=student_school_view_path"student_school_view"%>>Marikina Science High School</a></div>
-      <p>Chanyungco St., Sta. Elena, Marikina City</p>
+      <div class="ui header"> <a href=<%=student_school_view_path"student_school_view"%>> <%= school.sname %></a></div>
+      <p><%= school.address %></p>
     </div>
-    <div class="ui padded segment" href="">
-      <div class="ui header"><a href="#">Marikina Polytechnic School</a></div>
-      <p>Chanyungco St., Sta. Elena, Marikina City</p>
-    </div>
-    <div class="ui padded segment">
-      <div class="ui header"><a href="#">UP Diliman</a></div>
-      <p> Diliman, Quezon City</p>
-    </div>
+    <%end%>
+  
   </div>
 
 </div>
