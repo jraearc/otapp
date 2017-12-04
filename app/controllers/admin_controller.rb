@@ -20,6 +20,5 @@ end
 def admin_settings
 	@school = School.find(cookies[:userid]) #change constant to session id
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
-	redirect_to admin_home_path
 end
 end
