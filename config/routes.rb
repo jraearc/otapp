@@ -6,16 +6,23 @@ Rails.application.routes.draw do
 
   # Defines admin pages
   get 'admin/', to: 'admin#admin_home'
+<<<<<<< HEAD
   get 'admin/home', to: 'admin#admin_home'
   get 'admin/settings', to: 'admin#admin_settings', as: 'admin_settings'
   get 'admin/app_profile', to: 'admin#admin_app_profile'
   get 'admin/courses', to: 'admin#admin_courses'
+=======
+  get 'admin/home', to: 'admin#admin_home', as: 'admin_home'
+  get 'admin/settings', to: 'admin#admin_settings', as: 'admin_settings'
+  get 'admin/app_profile', to: 'admin#admin_app_profile', as: 'admin_app_profile'
+  get 'admin/courses', to: 'admin#admin_courses', as: 'admin_courses'
+>>>>>>> 5220bb06d6b573d74c131c3a508ef5fa364d9a05
 
   # Defines student pages
   get 'student/', to: 'student#student_home'
-  get 'student/home', to: 'student#student_home'
-  get 'student/settings', to: 'student#student_settings'
-  get 'student/profile', to: 'student#student_profile'
-  get 'student/school_view', to: 'student#school_view'
+  get 'student/home', to: 'student#student_home', as: 'student_home'
+  get 'student/settings', to: 'student#student_settings', as: 'student_settings'
+  get 'student/profile', to: 'student#student_profile', as: 'student_profile'
+  get 'student/school_view', to: 'student#school_view', as: 'student_school_view'
 
 end
