@@ -58,18 +58,19 @@
               <div class="form-padding-signup" style="display: none;">
                 <div class="signup-admin" style="display: none;">
                   <p style="text-align: right;">Admin</p>
-                  <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
+                  <%= form_tag(signup_path, method: "post", class: "ui form") do %>
+                      <input type="hidden" value="Admin" name="type" id="admintype" />
                       <div class="field">
-                        <%= label_tag(:"Full Name") %>
+                        <%= label_tag("Full Name") %>
                         <%= text_field_tag(:name, "", placeholder: "John Doe") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"School") %>
+                        <%= label_tag("School") %>
                           <div class="ui compact menu">
-                          <select class="ui fluid search dropdown">
-                              <option value="">Select Course</option>
+                          <select class="ui fluid search dropdown" name="school_name">
+                              <option value="">Select School</option>
                                 <% @all_schools.each do |school| %>
-                                <option> <%= school.sname %></option>
+                                <option value="<%= school.sname %>" > <%= school.sname %></option>
                                 <%end%>
                           </select>
                           <!-- <div class = "text"> "Select School"</div>
@@ -82,43 +83,45 @@
                         </select> -->
                       </div>
                       <div class="field">
-                        <%= label_tag(:"School Position") %>
+                        <%= label_tag("School Position") %>
                         <%= text_field_tag(:school_pos, "", placeholder: "Principal") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Username") %>
-                        <%= text_field_tag(:admin_username, "", placeholder: "johndoe") %>
+                        <%= label_tag("Username") %>
+                        <%= text_field_tag(:username, "", placeholder: "johndoe") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Email") %>
-                        <%= text_field_tag(:admin_email, "", placeholder: "johndoe@gmail.com") %>
+                        <%= label_tag("Email") %>
+                        <%= text_field_tag(:e_mail, "", placeholder: "johndoe@gmail.com") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Password") %>
-                        <%= text_field_tag(:admin_password, "", placeholder: "password") %>
+                        <%= label_tag("Password") %>
+                        <%= password_field_tag(:password, "", placeholder: "password", id: "AtxtPassword") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Password") %>
-                        <%= text_field_tag(:admin_password, "", placeholder: "password") %>
+                        <%= label_tag("Confirm password") %>
+                        <%= password_field_tag(:password_conf, "", placeholder: "password", id: "AtxtConfirmPassword") %>
                       </div>
                     <div class="center">
                       <button class="fluid ui blue button" onclick="return AdminValidate()">Create Account</button>
                     </div>
                   <% end %>
                 </div>
+              </div>
                 <div class="signup-student" style="display: none;">
                     <p style="text-align: right;"> Student
-                    <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
+                    <%= form_tag(signup_path, method: "post", class: "ui form") do %>
+                      <input type="hidden" value="Student" name="type" id="studenttype" />
                       <div class="fields">
                         <div class="ten wide field">
                           <div class="field">
-                            <%= label_tag(:"Full Name") %>
+                            <%= label_tag("Full Name") %>
                             <%= text_field_tag(:name, "", placeholder: "John Doe") %>
                           </div>
                         </div>
                         <div class="six wide field">
                           <div class="field">
-                            <%= label_tag(:"Birthdate") %>
+                            <%= label_tag("Birthdate") %>
                             <%= text_field_tag(:birthdate, "", placeholder: "1997-10-18") %>
                           </div>
                         </div>
@@ -126,32 +129,32 @@
                       <div class="fields">
                         <div class="ten wide field">                      
                           <div class="field">
-                              <%= label_tag(:"Address") %>
+                              <%= label_tag("Address") %>
                               <%= text_field_tag(:address, "", placeholder: "#30 Kalayaan Dormitory, Diliman, Quezon City") %>
                           </div>
                         </div>
                         <div class="six wide field">
                           <div class="field">
-                            <%= label_tag(:"Civil Status") %>
+                            <%= label_tag("Civil Status") %>
                             <%= text_field_tag(:civil_status, "", placeholder: "Single") %>
                           </div>
                         </div>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Username") %>
+                        <%= label_tag("Username") %>
                         <%= text_field_tag(:username, "", placeholder: "johndoe") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Email") %>
+                        <%= label_tag("Email") %>
                         <%= text_field_tag(:e_mail, "", placeholder: "johndoe@gmail.com") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Password") %>
-                        <%= text_field_tag(:password, "", placeholder: "password") %>
+                        <%= label_tag("Password") %>
+                        <%= password_field_tag(:password, "", placeholder: "password", id: "txtPassword") %>
                       </div>
                       <div class="field">
-                        <%= label_tag(:"Password") %>
-                        <%= text_field_tag(:password, "", placeholder: "password") %>
+                        <%= label_tag("Confirm password") %>
+                        <%= password_field_tag(:password_conf, "", placeholder: "password", id: "txtConfirmPassword") %>
                       </div>
                       <div class="center">
                       <button class="fluid ui blue button" onclick="return UserValidate()">Create Account</button>
