@@ -6,7 +6,8 @@ def admin_courses
 	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:cookies[:userid])
 end
 def admin_home
-	@school = School.find(cookies[:userid]) #change constant to session id
+	@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
+	@school = School.find(@temp.school_id) #change constant to session id
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
 
 	if params[:search]!=""
