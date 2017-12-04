@@ -4,16 +4,17 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by("LOWER(email) = ?", account_params[:email].downcase)
+		@user = User.find_by("LOWER(e_mail) = ?", params[:e_mail].downcase)
 
-	if @user.present? && @users.authenticate(account_params[:password])
+	if @user.present? && @user.authenticate(params[:password])
 	  	cookies.permanent.signed[:username] = @user.username
 	  	@searchuser_s = Student.where(student_userid: @user.userid)
 	  	@searchuser_a = Admin.where(admin_userid: @user.userid)
 	  	if !@searchuser_s.blank?
 		 	redirect_to student_home_path
-		elsif !searchuser_a.blank?
+		elsif !@searchuser_a.blank?
 			redirect_to admin_home_path
+		end
 	else
 		render :new
 	end
@@ -24,9 +25,4 @@ class SessionsController < ApplicationController
 		redirect_to root_url
 	end
 
-	private
-
-	def account_params
-		params.require(:user).permit(:email, :password)
-	end
 end
