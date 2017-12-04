@@ -10,8 +10,10 @@ def admin_home
 	@school = School.find(@temp.school_id) #change constant to session id
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
 
-	if params[:search]!=""
-    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').where("LOWER(users.name) LIKE ? ", "%#{params[:search]}%" )
+	if params[:search]!="" && params[:radio]=="name"
+    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').select('users.userid,users.name, schools.sname').where("LOWER(users.name) LIKE ? ", "%#{params[:search]}%" )
+    elsif params[:search]!="" && params[:radio]=="course"
+    	@applicants = Apply.joins('join users on applies.student_userid=users.userid join applications on applies.ref_no=applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id=schools.school_id').select('users.userid,users.name, schools.sname').where("LOWER(courses.course_name) LIKE ? and schools.school_id =?", "%#{params[:search]}%",cookies[:userid])
   	else
     	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').where(school_id: cookies[:userid])
   	end

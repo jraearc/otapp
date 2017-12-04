@@ -37,25 +37,25 @@
       </div>
 
     </div>
-           <% end %>
+         
     <div class="inline fields">
         <div class="inline fields">
       <label for="fruit">Search by:</label>
       <div class="field">
         <div class="ui radio checkbox">
-          <input type="radio" name="search" checked="" tabindex="0" class="hidden">
-          <label>Applicants</label>
+           <%= text_field_tag :radio, "", type:"radio", value:"name",tabindex:"0", class:"active", checked:"true"%>
+        <%= label_tag(:"Applicants") %>
         </div>
       </div>
       <div class="field">
         <div class="ui radio checkbox">
-          <input type="radio" name="search" tabindex="0" class="hidden">
-          <label>Course</label>
+          <%= text_field_tag :radio, "", type:"radio", value:"course",tabindex:"0", class:"hidden"%>
+        <%= label_tag(:"Course") %>
         </div>
       </div>
     </div>
   </div>
-
+<% end %>
     <div class="ui raised segments">
       <% @applicants.each do |app|%>
       <div class="ui padded segment">
