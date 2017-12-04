@@ -98,9 +98,9 @@
           <label>Course</label>
           <select class="ui search dropdown">
             <option value="">Select Course</option>
-            <option value="1">Basic Mechanics</option>
-            <option value="2">Culinary Arts II</option>
-            <option value="3">Web Development I</option>
+            <% @all_courses.each do |course|%>
+              <option><%=course.course_name%></option>
+              <%end%>
           </select>
         </div>
     </form>
