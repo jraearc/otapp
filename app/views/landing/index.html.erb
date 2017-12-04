@@ -58,87 +58,105 @@
               <div class="form-padding-signup" style="display: none;">
                 <div class="signup-admin" style="display: none;">
                   <p style="text-align: right;">Admin</p>
-                  <div class="ui form">
+                  <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
                       <div class="field">
-                        <label>Full Name</label>
-                        <input placeholder="John Doe" name="admin_name" type="text">
+                        <%= label_tag(:"Full Name") %>
+                        <%= text_field_tag(:name, "", placeholder: "John Doe") %>
                       </div>
                       <div class="field">
-                        <label>School Position</label>
-                        <input placeholder="Principal" name="school_pos" type="text">
+                        <%= label_tag(:"School") %>
+                          <div class="ui compact menu">
+                          <select class="ui fluid search dropdown">
+                              <option value="">Select Course</option>
+                                <% @all_schools.each do |school| %>
+                                <option> <%= school.sname %></option>
+                                <%end%>
+                          </select>
+                          <!-- <div class = "text"> "Select School"</div>
+                          <i class="dropdown icon"></i>
+                          <div class="menu"> 
+                           <% @all_schools.each do |school| %>
+                           <div class = "item"> <% school.sname %></div>
+                           <%end%>
+                          </div>
+                        </select> -->
                       </div>
                       <div class="field">
-                        <label>Username</label>
-                        <input placeholder="johndoe" name="admin_username" maxlength="9" type="text">
-                      </div>
-                        <div class="field">
-                        <label>Email</label>
-                        <input placeholder="johndoe@gmail.com" name="admin_email" type="text">
+                        <%= label_tag(:"School Position") %>
+                        <%= text_field_tag(:school_pos, "", placeholder: "Principal") %>
                       </div>
                       <div class="field">
-                        <label>Password</label>
-                        <input placeholder="password" name="admin_password" id="AtxtPassword" type="password">
+                        <%= label_tag(:"Username") %>
+                        <%= text_field_tag(:admin_username, "", placeholder: "johndoe") %>
                       </div>
                       <div class="field">
-                        <label>Confirm Password</label>
-                        <input placeholder="password" name="admin_password" id="AtxtConfirmPassword" type="password">
+                        <%= label_tag(:"Email") %>
+                        <%= text_field_tag(:admin_email, "", placeholder: "johndoe@gmail.com") %>
+                      </div>
+                      <div class="field">
+                        <%= label_tag(:"Password") %>
+                        <%= text_field_tag(:admin_password, "", placeholder: "password") %>
+                      </div>
+                      <div class="field">
+                        <%= label_tag(:"Password") %>
+                        <%= text_field_tag(:admin_password, "", placeholder: "password") %>
                       </div>
                     <div class="center">
                       <button class="fluid ui blue button" onclick="return AdminValidate()">Create Account</button>
                     </div>
-                  </div>
+                  <% end %>
                 </div>
                 <div class="signup-student" style="display: none;">
-                    <p style="text-align: right; ">Student
-                    <div class="ui form">
+                    <p style="text-align: right;"> Student
+                    <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
                       <div class="fields">
                         <div class="ten wide field">
                           <div class="field">
-                            <label>Full Name</label>
-                            <input placeholder="John Doe" name="stud_name" type="text">
+                            <%= label_tag(:"Full Name") %>
+                            <%= text_field_tag(:name, "", placeholder: "John Doe") %>
                           </div>
                         </div>
                         <div class="six wide field">
                           <div class="field">
-                            <label>Birthdate</label>
-                            <input placeholder="1997-10-18" name="stud_bday" type="text">
+                            <%= label_tag(:"Birthdate") %>
+                            <%= text_field_tag(:birthdate, "", placeholder: "1997-10-18") %>
                           </div>
                         </div>
                       </div>
                       <div class="fields">
                         <div class="ten wide field">                      
                           <div class="field">
-                            <label>Address</label>
-                            <input placeholder="#30 Kalayaan Dormitory, Diliman, Quezon City" name="stud_address" type="text">
+                              <%= label_tag(:"Address") %>
+                              <%= text_field_tag(:address, "", placeholder: "#30 Kalayaan Dormitory, Diliman, Quezon City") %>
                           </div>
                         </div>
                         <div class="six wide field">
                           <div class="field">
-                            <label>Civil Status</label>
-                            <input placeholder="Single" name="stud_civil" type="text">
+                            <%= label_tag(:"Civil Status") %>
+                            <%= text_field_tag(:civil_status, "", placeholder: "Single") %>
                           </div>
                         </div>
                       </div>
                       <div class="field">
-                        <label>Username</label>
-                        <input placeholder="johndoe" name="stud_username" maxlength="9" type="text">
-                      </div>
-                        <div class="field">
-                        <label>Email</label>
-                        <input placeholder="johndoe@gmail.com" name="stud_email" type="text">
+                        <%= label_tag(:"Username") %>
+                        <%= text_field_tag(:username, "", placeholder: "johndoe") %>
                       </div>
                       <div class="field">
-                        <label>Password</label>
-                        <input placeholder="password" name="stud_password" id="txtPassword"  type="password">
+                        <%= label_tag(:"Email") %>
+                        <%= text_field_tag(:e_mail, "", placeholder: "johndoe@gmail.com") %>
                       </div>
                       <div class="field">
-                        <label>Confirm Password</label>
-                        <input placeholder="password" name="stud_password" id="txtConfirmPassword" type="password">
+                        <%= label_tag(:"Password") %>
+                        <%= text_field_tag(:password, "", placeholder: "password") %>
+                      </div>
+                      <div class="field">
+                        <%= label_tag(:"Password") %>
+                        <%= text_field_tag(:password, "", placeholder: "password") %>
                       </div>
                       <div class="center">
                       <button class="fluid ui blue button" onclick="return UserValidate()">Create Account</button>
-                    </div>
-                </div>
+                      </div>
+                <% end %>
               </div>
           
           </div>
@@ -186,4 +204,18 @@ function signUp(){
         }
         return true;
     }
+
+   $('#new-app').click(function(){
+      $('.small.modal')
+      .modal('show'); 
+        $('select.dropdown')
+  .dropdown()
+;
+   });
+
+        $('select.dropdown')
+  .dropdown()
+;
+  
+
 </script>
