@@ -33,24 +33,14 @@
     </tr>
   </thead>
   <tbody>
+    <% @courses_offered.each do |course|%>
     <tr>
-      <td>Web Development I</td>
-      <td>IT</td>
-      <td>1200</td>
+      <td><%= course.course_name%></td>
+      <td><%= course.sector%></td>
+      <td><%= course.tuition_fee%></td>
       <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
     </tr>
-    <tr>
-      <td>Web Development II</td>
-      <td>IT</td>
-      <td>1200</td>
-      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
-    </tr>
-     <tr>
-      <td>Web Development III</td>
-      <td>IT</td>
-      <td>1200</td>
-      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
-    </tr>
+    <%end%>
   </tbody>
 </table>
   </div>
@@ -68,7 +58,7 @@
         <div class="field">
             <label>Course</label>
             <select class="ui search dropdown">
-              <option value="">Select School</option>
+              <option value="">Select Course</option>
               <% @all_courses.each do |course| %>
               <option><%= course.course_name %></option>
               <%end%>
