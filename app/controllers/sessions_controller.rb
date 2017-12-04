@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-	
+
 	def new
 		redirect_to root_url
 	end
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 			redirect_to admin_home_path
 		end
 	else
-		flash[:alert] = "User does not exist or password is incorrect."
+		flash[:error] = "User does not exist or password is incorrect."
 		redirect_to root_url
 	end
 	end
