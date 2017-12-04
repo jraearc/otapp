@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20171203113719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pgcrypto"
 
   create_table "admin_confirmations", primary_key: ["admin_userid", "ref_no"], force: :cascade do |t|
     t.integer "admin_userid", null: false
