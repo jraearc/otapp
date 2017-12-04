@@ -5,29 +5,34 @@
   <h1 class="header">Welcome to Online TESDA Application!</h1>
 </div>
 <br>
-<div class="ui form">
+<%= form_tag(student_home_path, :method => "get", id: "search-form", class: "ui form") do %>
   <div class="field">
-    <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Search for schools...">
-    <i class="search icon"></i>
+    <div class="ui action left icon input">
+        <i class="search icon"></i>
+        <%= text_field_tag :search, "", placeholder: "Search for ..."%>
+         <%=  button_tag("Search", class: "ui button blue", type: "submit") %>
+       
+      </div>
   </div>
+
   <div class="inline fields">
       <div class="inline fields">
     <label for="fruit">Search by:</label>
     <div class="field">
       <div class="ui radio checkbox">
-        <input type="radio" name="search" checked="" tabindex="0" class="hidden">
-        <label>School</label>
+        <%= text_field_tag :radio, "", type:"radio", value:"school",tabindex:"0", class:"active", checked:"true"%>
+        <%= label_tag(:"School") %>
       </div>
     </div>
     <div class="field">
       <div class="ui radio checkbox">
-        <input type="radio" name="search" tabindex="0" class="hidden">
-        <label>Course</label>
+        <%= text_field_tag :radio, "", type:"radio", value:"course",tabindex:"0", class:"hidden"%>
+        <%= label_tag(:"Course") %>
       </div>
     </div>
   </div>
 </div>
+  <% end %>
 
   <div class="ui raised segments">
     <% @all_schools.each do |school| %>
@@ -42,3 +47,10 @@
 </div>
 </header>
 
+<script>
+$(document).ready(function(){
+$('.ui.radio.checkbox')
+  .checkbox()
+;
+});
+</script>
