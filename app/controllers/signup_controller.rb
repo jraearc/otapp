@@ -6,6 +6,7 @@ class SignupController < ApplicationController
     	@admin = Admin.new(admin_userid: @user.userid, school_pos: params[:position])
     elsif params[:type].eql? "Student"
     	@student = Student.new(student_userid: @user.userid, birthdate: params[:birthdate], address: params[:address], civil_status: params[:civil_status])
+    end
     if @user.save
 	    cookies.signed[:username] = @user.username
 	  	if params[:type].eql? "Student"
