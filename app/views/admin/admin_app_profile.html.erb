@@ -34,29 +34,17 @@
     </tr>
   </thead>
   <tbody>
+    <% @apps.each do |app| %>
     <tr>
-     <td>Web Development I</td>
-     <td class="negative"><i class="remove circle icon"></i>Rejected</td>
-     <td><button class="ui small green button" name="edit-btn">Edit Status</button> 
+      <td><%= app.course_name%></td>
+      <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
+      <td><button class="ui small green button" name="edit-btn">Edit Status</button> 
       <button class="ui small red button">Delete</button></td>
     </tr>
-    <tr>
-      <td>Web Development II</td>
-      <td class="positive"><i class="check circle icon"></i>Accepted</td>
-      <td><button class="ui small green button" name="edit-btn">Edit Status</button> <button class="ui small red button">Delete</button></td>
-    </tr>
-    <tr>
-      <td>Web Development III</td>
-      <td class="warning"><i class="attention icon"></i>Pending</td>
-      <td><button class="ui small green button" name="edit-btn">Edit Status</button><button class="ui small red button">Delete</button></td>
-    </tr>
+    <%end%>
   </tbody>
   </table>
 </div>
-
-
-
-
 
 <div class="ui tiny modal">
   <i class="close icon"></i>

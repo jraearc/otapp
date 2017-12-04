@@ -7,4 +7,8 @@ end
 def admin_home
 	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.name, schools.sname').where("schools.sname='Academy Asia School of Technology and the Arts, Inc.'")
 end
+def admin_app_profile
+	@apps = Apply.joins('join applications on applies.ref_no = applications.ref_no join courses on courses.course_id = applications.course_id join schools on applies.school_id = schools.school_id').select('applies.is_received, courses.course_name')
+	#need pa ng "where" clause kasi lahat lang ng inaapplyan ng student yung lalabas
+end
 end
