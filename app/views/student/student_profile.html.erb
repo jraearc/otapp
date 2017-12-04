@@ -34,24 +34,14 @@
     </tr>
   </thead>
   <tbody>
+    <% @apps.each do |app| %>
     <tr>
-      <td>UP Diliman</td>
-      <td>Web Development I</td>
-      <td class="warning"><i class="attention icon"></i>Pending</td>
+      <td><%= app.sname%></td>
+      <td><%= app.course_name%></td>
+      <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
       <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
     </tr>
-    <tr>
-      <td>Marikina Polytechnic School</td>
-      <td>Culinary Arts II</td>
-      <td class="positive"><i class="check circle icon"></i>Accepted</td>
-            <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
-    </tr>
-     <tr>
-      <td>Marikina Science School</td>
-      <td>Basic Mechanics</td>
-      <td class="negative"><i class="remove circle icon"></i>Rejected</td>
-            <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Cancel</button></td>
-    </tr>
+    <%end%>
   </tbody>
 </table>
   </div>
