@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'signup', to: "signup#new"
-
   post 'signup', to: "signup#create"
 
   post 'sessions', to: "sessions#create"
