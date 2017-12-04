@@ -8,12 +8,12 @@
         <img src=<%=asset_path"school.jpg"%>>
       </div>
       <div class="content">
-        <a class="header">Marikina Science High School</a>
+        <a class="header"><%= @school.sname %></a>
         <div class="description">
-          mshs@gmail.com<br>
-          Chanyungco St., Sta.Elena, Marikina City
+          <%= @school.email %><br>
+          <%= @school.address %>
           <br>
-          997-7852
+          <%= @school.phone %>
         </div>
       </div>
     </div>
@@ -25,29 +25,24 @@
   <thead>
     <tr>
       <th>Course</th>
+      <th>Duration (hr)</th>
       <th>Sector</th>
       <th>Tuition Fee (Php)</th>
     </tr>
   </thead>
   <tbody>
+    <% @courses.each do |course| %>
     <tr>
-      <td>Web Development I</td>
-      <td>ICT</td>
-      <td>5000</td>
+      <td><%=course.course_name%></td>
+      <td><%=course.duration%></td>
+      <td><%=course.sector%></td>
+      <td><%=course.tuition_fee%></td>
     </tr>
-    <tr>
-      <td>Culinary Arts II</td>
-      <td>Tourism</td>
-      <td>200</td>
-    </tr>
-     <tr>
-      <td>Basic Mechanics</td>
-      <td>Metals and Engineering</td>
-      <td>300</td>
-    </tr>
+    <%end%>
   </tbody>
 </table>
   </div>
 </div>
 
 </header>
+
