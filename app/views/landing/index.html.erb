@@ -16,6 +16,10 @@
           </div>
           <div class="ui bottom attached tab segment active" data-tab="first">
             <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
+            <% flash.each do |key, value| %>
+              <div class="ui negative message alert alert-<%= key %>"><%= value %></div>
+              <% flash.clear %>
+            <% end %>
           <!--     <div class="inline fields">
                 <label for="fruit">Sign in as:</label>
                 <div class="field">

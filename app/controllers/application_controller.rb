@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :redirect_to_https
+
   helper_method :account_signed_in?, :current_account
 
   protected
@@ -15,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def account_signed_in?
     current_account.present?
+  end
+
+  def redirect_to_https
+    redirect_to :protocol => "https://" unless (request.ssl? || request.local?)
   end
 end
