@@ -1,8 +1,12 @@
 class StudentController < ApplicationController
 def student_home
 	@all_schools = School.order(:sname)
-	if params[:search]!=""
+	if params[:search]!="" && params[:radio]=="school"
 		@all_schools = School.select('school_id,sname, address').where("LOWER(sname) LIKE ? ", "%#{params[:search]}%" )
+  	elsif params[:search]!="" && params[:radio]=="course"
+  		@all_schools = Offer.joins('join schools ON offers.school_id = schools.school_id JOIN courses ON offers.course_offered_id = courses.course_id').select('schools.sname,schools.school_id,schools.address').where("LOWER(courses.course_name) LIKE ? ", "%#{params[:search]}%" )
+  	elsif params[:search]=="" && params[:radio]==""
+  		@all_schools = School.select('school_id,sname, address').where("LOWER(sname) LIKE ? ", "%#{params[:search]}%" )
   	else
     	@all_schools = School.order(:sname)
   	end
