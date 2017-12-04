@@ -15,32 +15,32 @@
             <a class="item" data-tab="second" onClick="signUp()"><h3>Register</h3></a>
           </div>
           <div class="ui bottom attached tab segment active" data-tab="first">
-            <form class="ui form">
-              <div class="inline fields">
-    <label for="fruit">Sign in as:</label>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" name="search" checked="" tabindex="0" class="hidden">
-        <label>Admin</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input type="radio" name="search" tabindex="0" class="hidden">
-        <label>Student</label>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <label>Email</label>
-    <input type="text" name="email" placeholder="johndoe@gmail.com">
-  </div>
-  <div class="field">
-    <label>Password</label>
-    <input type="password" name="password" placeholder="password">
-  </div>
-  <button class="fluid ui green button pull-right" type="submit">Sign in</button>
-</form>
+            <form class="ui form" method="post" action=<%=sessions_path %>>
+          <!--     <div class="inline fields">
+                <label for="fruit">Sign in as:</label>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="search" checked="" tabindex="0" class="hidden">
+                    <label>Admin</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input type="radio" name="search" tabindex="0" class="hidden">
+                    <label>Student</label>
+                  </div>
+                </div>
+              </div> -->
+              <div class="field">
+                <label>Email</label>
+                <input type="text" name="e_mail" placeholder="johndoe@gmail.com">
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="password">
+              </div>
+              <button class="fluid ui green button pull-right" type="submit">Sign in</button>
+            </form>
           </div>
           <div class="ui bottom attached tab segment" data-tab="second">
                   
