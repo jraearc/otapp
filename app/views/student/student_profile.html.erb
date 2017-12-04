@@ -61,18 +61,18 @@
             <label>School</label>
             <select class="ui search dropdown">
               <option value="">Select School</option>
-              <option value="1">Marikina Science High School</option>
-              <option value="2">Marikina Polytechnic School</option>
-              <option value="3">UP Diliman</option>
+               <% @all_schools.each do |school|%>
+              <option><%=school.sname%></option>
+              <%end%>
             </select>
         </div>
         <div class="field">
           <label>Course</label>
           <select class="ui search dropdown">
             <option value="">Select Course</option>
-            <option value="1">Basic Mechanics</option>
-            <option value="2">Culinary Arts II</option>
-            <option value="3">Web Development I</option>
+            <% @all_courses.each do |course|%>
+              <option><%=course.course_name%></option>
+              <%end%>
           </select>
         </div>
       </div>
