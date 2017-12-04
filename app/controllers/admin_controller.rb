@@ -7,7 +7,8 @@ def admin_courses
 	#Palitan pa yung school id, testing lang yan haha
 end
 def admin_home
-	@school = School.find(cookies[:userid]) #change constant to session id
+	@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
+	@school = School.find(@temp.school_id) #change constant to session id
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
 	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').where(school_id: cookies[:userid])
 end
