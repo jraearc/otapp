@@ -7,23 +7,25 @@
 <div class="ui grid container">
     <div class="four wide column">
       <div class="ui card">
-      <div class="image">
-        <img src=<%=asset_path"school.jpg"%>>
-      </div>
-      <div class="content">
-        <a class="header">Marikina Science High School</a>
-        <div class="description">
-          mshs@gmail.com<br>
-          Chanyungco St., Sta.Elena, Marikina City
-          <br>
-          997-7852
+        <div class="image">
+          <img src=<%=asset_path"school.jpg"%>>
+        </div>
+        <div class="content">
+          <a class="header"><%= @school.sname %></a>
+          <div class="description">
+           <%= @school.email %>
+           <br>
+            <%= @school.address %>
+            <br>
+            <%= @school.phone %>
+          </div>
         </div>
       </div>
     </div>
-</div>
+
 
 <div class="twelve wide column">
-   <h1>Welcome Position Name!</h1>
+   <h1>Welcome <%= @school_admin.school_pos %>!</h1>
    <div class="ui divider"></div>
   <div class="ui form">
     <div class="field">
@@ -52,13 +54,22 @@
     <div class="ui raised segments">
       <% @applicants.each do |app|%>
       <div class="ui padded segment">
-        <div class="ui header"> <a href=<%=admin_app_profile_path %>><%= app.name %></a></div>
+        <div class="ui header"> <a href=<%=admin_app_profile_path(app.userid)%>><%= app.name %></a></div>
       </div>
       <%end%>
     </div>
   
   </div>
+</div>
   </header>
 
 </div>
 
+<script>
+$(document).ready(function(){
+$('.ui.radio.checkbox')
+  .checkbox()
+;
+});
+
+</script>

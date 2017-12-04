@@ -8,17 +8,19 @@
         <img src=<%=asset_path"school.jpg"%> >
       </div>
       <div class="content">
-        <a class="header">Marikina Science High School</a>
-        <div class="description">
-          mshs@gmail.com<br>
-          Chanyungco St., Sta.Elena, Marikina City
-          <br>
-          997-7852
-        </div>
+        <a class="header"><%= @school.sname %></a>
+          <div class="description">
+           <%= @school.email %>
+           <br>
+            <%= @school.address %>
+            <br>
+            <%= @school.phone %>
+          </div>
       </div>
     </div>
     <button class="fluid ui blue button" id="new-app"><i class="plus icon"></i>Add Course</button>
-</div>
+  </div>
+
 
 <div class="twelve wide column">
   <h1 class="text">Courses Offered</h1>
@@ -45,7 +47,7 @@
 </table>
   </div>
 </div>
-
+</div>
 </header>
 <div class="ui small modal">
   <i class="close icon"></i>

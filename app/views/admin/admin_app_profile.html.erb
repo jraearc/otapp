@@ -8,15 +8,15 @@
         <img src=<%=asset_path"avatar.png"%>>
       </div>
       <div class="content">
-        <a class="header">Abby del Castillo</a>
+        <a class="header"><%= @applicant.name %></a>
         <div class="meta">
-          <span class="username">@abbydc</span>
+          <span class="username">@<%= @applicant.username %></span>
         </div>
         <div class="description">
-          abby1097@gmail.com<br>
-          Oct. 28, 1997<br>
-          Rancho II, Marikina City<br>
-          Single 
+          <%= @applicant.e_mail %><br>
+          <%= @app_deets.birthdate %><br>
+          <%= @app_deets.address %><br>
+          <%= @app_deets.civil_status %>
         </div>
       </div>
     </div>

@@ -1,0 +1,14 @@
+// Place all the styles related to the partials controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ #home{
+ 	padding-top: 60px;
+ 	padding-bottom: 40px;
+ }
+ #home .title{
+ 	text-align: center;
+ }
+div.description {
+    width: 16em; 
+    word-wrap: break-word;
+}
