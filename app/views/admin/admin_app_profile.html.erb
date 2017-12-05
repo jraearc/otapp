@@ -46,12 +46,17 @@
     <tr>
       <td><%= app.course_name%></td>
       <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
+      <%= form_tag(admin_app_profile_deleteapp_path, method: "post", class: "ui form") do %> 
       <td><button type="button" class="ui small green button" name="edit_btn">
         <input type="hidden" name="ref_no" value="<%= app.ref_no %>" form="modal-edit-form"></input>
         Edit Status
       </button> 
-      <button class="ui small red button">Delete</button></td>
+      <button class="ui small red button">
+      <input type="hidden" name="ref_no" value="<%= app.ref_no %>">
+      Delete
+      </button></td>
     </tr>
+    <%end%>
     <%end%>
   </tbody>
   </table>
