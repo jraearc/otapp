@@ -1,9 +1,10 @@
 class AdminController < ApplicationController
 
 def admin_courses
+	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
 	@all_courses = Course.order(:course_name)
-	@school = School.find(cookies[:userid]) #change constant to session id
-	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:cookies[:userid])
+	@school = School.find(@temp.school_id) #change constant to session id
+	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:@temp.school_id)
 end
 def admin_home
 	@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
