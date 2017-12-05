@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'student/settings/save', to: "student#save"
   get 'student/profile', to: 'student#student_profile', as: 'student_profile'
   get 'student/profile/:id', to: 'student#student_profile_id', as: 'student_profile_id'
+  post 'student/profile/addcourse', to: 'student#add_application'
   get 'student/school_view/:id(.:format)', to: 'student#school_view', as: 'student_school_view'
 
 end
