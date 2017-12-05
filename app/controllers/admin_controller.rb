@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+	before_action :check_if_admin
 
 def admin_courses
 	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
@@ -57,4 +58,20 @@ def edit_status
 		redirect_to :back
 	end
 end
+
+def check_if_admin
+	if !cookies.key?(:userid)
+		redirect_to root_url
+	end
+	@admin = Admin.where(admin_userid: cookies[:userid])
+	if @admin.blank?
+		@student = Student.where(student_userid: cookies[:userid])
+		if @student.blank?
+			redirect_to root_url
+		else
+			redirect_to student_home_path
+		end
+	end
+end
+
 end

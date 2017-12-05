@@ -1,4 +1,5 @@
 class StudentController < ApplicationController
+	before_action :check_if_student
 def student_home
 	@all_schools = School.order(:sname)
 	if params[:search]!="" && params[:radio]=="school"
@@ -74,8 +75,8 @@ end
 
 def delete_application
 	# begin
-		@apply = Apply.where(ref_no: params[:ref_no]).destroy()
-		@application = Application.where(ref_no: params[:ref_no]).destroy()
+		@apply = Apply.where(ref_no: params[:reference_no]).delete_all
+		@application = Application.where(ref_no: params[:reference_no]).delete_all
 		flash[:notice] = "Application deleted."
 		redirect_to student_profile_path
 	# rescue
@@ -83,4 +84,20 @@ def delete_application
 	# 	redirect_to student_profile_path
 	# end
 end
+
+def check_if_student
+	if !cookies.key?(:userid)
+		redirect_to root_url
+	end
+	@student = Student.where(student_userid: cookies[:userid])
+	if @student.blank?
+		@admin = Admin.where(admin_userid: cookies[:userid])
+		if @admin.blank?
+			redirect_to root_url
+		else
+			redirect_to admin_home_path
+		end
+	end
+end
+
 end
