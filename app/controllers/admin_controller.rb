@@ -1,9 +1,10 @@
 class AdminController < ApplicationController
 
 def admin_courses
+	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
 	@all_courses = Course.order(:course_name)
-	@school = School.find(cookies[:userid]) #change constant to session id
-	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:cookies[:userid])
+	@school = School.find(@temp.school_id) #change constant to session id
+	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:@temp.school_id)
 end
 def admin_home
 	@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
@@ -25,18 +26,15 @@ def admin_app_profile
 	#need pa ng "where" clause kasi lahat lang ng inaapplyan ng student yung lalabas
 end
 def admin_settings
-	
-
-		#admin_userid:params[:userid])
-	#User.where(:email => "foo@bar.com")[0]
-	@school = School.find(cookies[:userid]) #change constant to session id
+	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
+	@school = School.find(@temp.school_id)
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
 	@temp = Manage.find(cookies[:userid])
 end
 def save
-	@temp = Manage.find(cookies[:userid])
+	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
 	#@school = School.find(Manage.find(cookies[:userid]))
-	@school = School.find(@temp.id)
+	@school = School.find(@temp.school_id)
 	#change constant to session id
 	@school.sname = params[:sname]
 	@school.email = params[:e_mail]
