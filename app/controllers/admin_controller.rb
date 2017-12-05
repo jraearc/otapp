@@ -34,12 +34,12 @@ def admin_settings
 	@temp = Manage.find(cookies[:userid])
 end
 def save
-	#@temp = Manage.find(cookies[:userid])
+	@temp = Manage.find(cookies[:userid])
 	#@school = School.find(Manage.find(cookies[:userid]))
-	@school = School.find(params[:school_id])
+	@school = School.find(@temp.id)
 	#change constant to session id
 	@school.sname = params[:sname]
-	@school.email = params[:email]
+	@school.email = params[:e_mail]
 	@school.address = params[:address]
 	@school.phone = params[:phone]
 	@school.save
