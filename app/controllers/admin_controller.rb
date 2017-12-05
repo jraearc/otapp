@@ -13,11 +13,11 @@ def admin_home
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
 
 	if params[:search]!="" && params[:radio]=="name"
-    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').select('users.userid,users.name, schools.sname').where("LOWER(users.name) LIKE ? ", "%#{params[:search]}%" )
+    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').select('users.userid,users.name, schools.sname').where("LOWER(users.name) LIKE ? and schools.school_id =?", "%#{params[:search]}%", @temp.school_id)
     elsif params[:search]!="" && params[:radio]=="course"
-    	@applicants = Apply.joins('join users on applies.student_userid=users.userid join applications on applies.ref_no=applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id=schools.school_id').select('users.userid,users.name, schools.sname').where("LOWER(courses.course_name) LIKE ? and schools.school_id =?", "%#{params[:search]}%",cookies[:userid])
+    	@applicants = Apply.joins('join users on applies.student_userid=users.userid join applications on applies.ref_no=applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id=schools.school_id').select('users.userid,users.name, schools.sname').where("LOWER(courses.course_name) LIKE ? and schools.school_id =?", "%#{params[:search]}%",@temp.school_id)
   	else
-    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').where(school_id: cookies[:userid])
+    	@applicants = Apply.joins('join users on applies.student_userid = users.userid join applications on applies.ref_no = applications.ref_no join courses on applications.course_id = courses.course_id join schools on applies.school_id = schools.school_id').select('users.userid,users.name, schools.sname').where(school_id: @temp.school_id)
   	end
 end
 def admin_app_profile
@@ -99,7 +99,7 @@ def edit_tuition
 		@course = Course.select('*').where(course_id: params[:course_offered_no]).first
 		@course.tuition_fee = params[:tuition_fee]
 		@course.save
-		flash[:notice] = "Application edited successfully."
+		flash[:notice] = "Application edited successfully." 
 		redirect_to admin_courses_path
 	rescue
 		flash[:error] = "Error editing course."
