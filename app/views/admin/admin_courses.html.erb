@@ -23,6 +23,14 @@
 
 
 <div class="twelve wide column">
+  <% flash.each do |key, value| %>
+            <% if key.eql? "error" %>
+              <div class="ui negative message alert alert-<%= key %>"><%= value %></div>
+            <% elsif key.eql? "notice" %>
+              <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+            <% flash.clear %>
+            <% end %>
+          <% end %>
   <h1 class="text">Courses Offered</h1>
   <div class="ui divider"></div>
     <table class="ui celled table">
