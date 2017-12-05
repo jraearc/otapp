@@ -27,9 +27,19 @@ def school_view
 end
 
 def student_settings
-
 	@user_student = User.find(cookies[:userid])
 	#change constant to session id
 
+end
+def save
+	@user_student = User.find(cookies[:userid])
+	#change constant to session id
+	@user_student.username = params[:username]
+	@user_student.e_mail = params[:e_mail]
+	@user_student.name = params[:name]
+	@user_student.password = params[:password]
+	@user_student.save
+	flash[:notice] = "Settings saved"
+	redirect_to student_settings_path
 end
 end
