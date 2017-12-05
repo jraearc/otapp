@@ -97,14 +97,17 @@ end
 def check_if_admin
 	if !cookies.key?(:userid)
 		redirect_to root_url
+		return
 	end
 	@admin = Admin.where(admin_userid: cookies[:userid])
 	if @admin.blank?
 		@student = Student.where(student_userid: cookies[:userid])
 		if @student.blank?
 			redirect_to root_url
+			return
 		else
 			redirect_to student_home_path
+			return
 		end
 	end
 end
