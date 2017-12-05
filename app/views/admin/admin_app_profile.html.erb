@@ -45,7 +45,11 @@
     <% @apps.each do |app| %>
     <tr>
       <td><%= app.course_name%></td>
-      <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
+      <% if app.is_received.eql? "Yes"%>
+        <td class="positive"><i class="check circle icon"></i><%= app.is_received%></td>
+      <% elsif app.is_received.eql? "No" %>
+        <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
+      <% end %>
       <%= form_tag(admin_app_profile_deleteapp_path, method: "post", class: "ui form") do %> 
       <td><button type="button" class="ui small green button" name="edit_btn">
         <input type="hidden" name="ref_no" value="<%= app.ref_no %>" form="modal-edit-form"></input>
