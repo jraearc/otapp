@@ -22,7 +22,7 @@ end
 def admin_app_profile
 	@applicant = User.find(params[:id]) #galing yung params sa pinasa from link ng admin_home
 	@app_deets = Student.find(params[:id])
-	@apps = Apply.joins('join applications on applies.ref_no = applications.ref_no join courses on courses.course_id = applications.course_id join schools on applies.school_id = schools.school_id').select('applies.is_received, courses.course_name').where(student_userid:params[:id])
+	@apps = Apply.joins('join applications on applies.ref_no = applications.ref_no join courses on courses.course_id = applications.course_id join schools on applies.school_id = schools.school_id').select('applies.is_received, courses.course_name, applies.ref_no').where(student_userid:params[:id])
 	#need pa ng "where" clause kasi lahat lang ng inaapplyan ng student yung lalabas
 end
 def admin_settings
@@ -43,5 +43,18 @@ def save
 	@school.save
 	flash[:notice] = "Settings saved"
 	redirect_to admin_settings_path
-end 
+end
+def edit_status
+	begin
+		@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
+		@student = Apply.select('student_userid,is_received').where(ref_no:params[:ref_no]).first
+		@student.is_received = params[:is_received]
+		@student.save
+		flash[:notice] = "Received status edited successfully."
+		redirect_to :back
+	rescue
+		flash[:error] = "Error editing received status."
+		redirect_to :back
+	end
+end
 end
