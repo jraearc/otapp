@@ -74,8 +74,8 @@ end
 
 def delete_application
 	# begin
-		@apply = Apply.where(ref_no: params[:ref_no]).destroy()
-		@application = Application.where(ref_no: params[:ref_no]).destroy()
+		@apply = Apply.where(ref_no: params[:reference_no]).delete_all
+		@application = Application.where(ref_no: params[:reference_no]).delete_all
 		flash[:notice] = "Application deleted."
 		redirect_to student_profile_path
 	# rescue
