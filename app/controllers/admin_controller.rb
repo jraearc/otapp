@@ -70,6 +70,18 @@ def edit_status
 		redirect_to :back
 	end
 end
+def add_course
+	# begin
+		@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
+		@course = Offer.new(:school_id => @temp.school_id, :course_offered_id => params[:course_name] )
+		@course.save
+		flash[:notice] = "Added course offered to database."
+		redirect_to admin_courses_path
+	# rescue
+	# 	flash[:error] = "Error adding course offered to database."
+	# 	redirect_to admin_courses_path
+	# end
+end
 
 def check_if_admin
 	if !cookies.key?(:userid)

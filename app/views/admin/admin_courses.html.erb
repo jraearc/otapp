@@ -23,6 +23,14 @@
 
 
 <div class="twelve wide column">
+  <% flash.each do |key, value| %>
+            <% if key.eql? "error" %>
+              <div class="ui negative message alert alert-<%= key %>"><%= value %></div>
+            <% elsif key.eql? "notice" %>
+              <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+            <% flash.clear %>
+            <% end %>
+          <% end %>
   <h1 class="text">Courses Offered</h1>
   <div class="ui divider"></div>
     <table class="ui celled table">
@@ -64,24 +72,24 @@
     Add Course
   </div>
   <div class="content">
-    <form class="ui form">
+    <%= form_tag(admin_courses_addcourse_path, method: "post", class: "ui form", id: "modal-add-form") do %>
       <div class="one field">
         <div class="field">
             <label>Course</label>
-            <select class="ui search dropdown">
+            <select class="ui search dropdown" name="course_name">
               <option value="">Select Course</option>
               <% @all_courses.each do |course| %>
-              <option><%= course.course_name %></option>
+              <option  value="<%= course.course_id %>"><%= course.course_name %></option>
               <%end%>
             </select>
         </div>
       </div>
-    </form>
+    <%end%>
   </div>
   <div class="actions">
-    <div class="ui positive right labeled icon button">
+    <button class="ui positive right labeled icon button" type="submit" form="modal-add-form">
       Add<i class="plus icon"></i>
-    </div>
+    </button>
   </div>
 </div>
 
