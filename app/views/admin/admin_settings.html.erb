@@ -5,7 +5,11 @@
   <h1 class="header">Edit School Details</h1>
   </div>
   <div class="ui divider"></div>
-  <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
+  <%= form_tag(admin_settings_save_path, method: "post", class: "ui form") do %>
+  <% flash.each do |key, value| %>
+              <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+              <% flash.clear %>
+            <% end %>
   <div class="field">
     <%= label_tag(:"School Name") %>
     <%= text_field_tag(:sname, "", placeholder: "", value:@school.sname) %>
