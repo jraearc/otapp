@@ -42,4 +42,8 @@ def save
 	flash[:notice] = "Settings saved"
 	redirect_to student_settings_path
 end
+def add_application
+	flash[:notice] = "Application added to database."
+	redirect_to student_profile_path
+end
 end

@@ -1,6 +1,7 @@
 <!--My Applications (User)-->
 <%= render "layouts/usernavbar" %>
 <header id="profile">
+
 <div class="ui grid container">
     <div class="four wide column">
       <div class="ui card">
@@ -23,6 +24,10 @@
     <button class="fluid ui blue button" id="new-app"><i class="plus icon"></i>New Application</button>
 </div>
 <div class="twelve wide column">
+  <% flash.each do |key, value| %>
+            <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+            <% flash.clear %>
+          <% end %>
   <h1 class="text">My Applications</h1>
   <div class="ui divider"></div>
     <table class="ui celled table">
@@ -55,7 +60,7 @@
     New Application
   </div>
   <div class="content">
-    <form class="ui form">
+    <%= form_tag(student_profile_addcourse_path, method: "post", class: "ui form", id: "modal-add-form") do %>
       <div class="two fields">
         <div class="field">
             <label>School</label>
@@ -76,16 +81,16 @@
           </select>
         </div>
       </div>
-    </form>
   </div>
   <div class="actions">
-    <div class="ui positive right labeled icon button">
+    <input class="ui positive right labeled icon button" type="submit" form="modal-add-form">
       Add<i class="plus icon"></i>
     </div>
     <div class="ui red button">
      Cancel
     </div>
   </div>
+  <% end %>
 </div>
 <div class="ui tiny modal">
   <i class="close icon"></i>
