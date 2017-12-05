@@ -40,7 +40,16 @@
       <td><%= course.course_name%></td>
       <td><%= course.sector%></td>
       <td><%= course.tuition_fee%></td>
-      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
+      <td>
+        <%= form_tag(admin_courses_deletecourse_path, method: "post", class: "ui form") do %>
+        <button class="ui small green button" name="edit-btn">
+        Edit
+        </button> 
+        <button class="ui small red button" action="submit" method="post">
+        <input type="hidden" name="course_offered_id" value="<%=course.course_offered_id %>"></input>
+        Remove
+        </button> </td>
+        <%end%>
     </tr>
     <%end%>
   </tbody>
