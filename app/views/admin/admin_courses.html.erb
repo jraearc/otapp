@@ -50,7 +50,8 @@
       <td><%= course.tuition_fee%></td>
       <td>
         <%= form_tag(admin_courses_deletecourse_path, method: "post", class: "ui form") do %>
-        <button class="ui small green button" name="edit-btn">
+        <button type="button" class="ui small green button" name="edit-btn">
+          <input type="hidden" name="course_offered_id" value="<%= course.course_offered_id %>" form="modal-edit-form"></input>
         Edit
         </button> 
         <button class="ui small red button" action="submit" method="post">
@@ -99,7 +100,7 @@
     Edit Course
   </div>
   <div class="content">
-    <%= form_tag(admin_courses_path, method: "post", class: "ui form") do %>
+    <%= form_tag(admin_courses_edittuition_path, method: "post", class: "ui form" ,id: "modal-edit-form") do %>
         <div class="field">
           <%= label_tag(:"Tuition Fee") %>
           <%= text_field_tag(:tuition_fee, "", placeholder: "Enter new tuition fee...", class: "prompt") %>
@@ -107,7 +108,9 @@
     <% end %>
   </div>
   <div class="actions">
-  <%= button_tag("Save", class: "ui positive button", type: "submit") %>
+  <button class="ui positive button" form="modal-edit-form" action="submit" method="post">
+      Save
+    </button>
   </div>
 </div>
 <script>

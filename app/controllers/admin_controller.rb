@@ -71,6 +71,19 @@ def edit_status
 	end
 end
 
+def edit_tuition
+	begin
+		@course = Course.select('*').where(course_id: params[:course_offered_id]).first
+		@course.tuition_fee = params[:tuition_fee]
+		@course.save
+		flash[:notice] = "Application edited successfully."
+		redirect_to admin_courses_path
+	rescue
+		flash[:error] = "Error editing course."
+		redirect_to admin_courses_path
+	end
+end
+
 def check_if_admin
 	if !cookies.key?(:userid)
 		redirect_to root_url
