@@ -74,15 +74,15 @@ def edit_application
 end
 
 def delete_application
-	# begin
+	begin
 		@apply = Apply.where(ref_no: params[:reference_no]).delete_all
 		@application = Application.where(ref_no: params[:reference_no]).delete_all
 		flash[:notice] = "Application deleted."
 		redirect_to student_profile_path
-	# rescue
-	# 	flash[:error] = "Error editing application."
-	# 	redirect_to student_profile_path
-	# end
+	rescue
+		flash[:error] = "Error deleting application."
+		redirect_to student_profile_path
+	end
 end
 
 def check_if_student
