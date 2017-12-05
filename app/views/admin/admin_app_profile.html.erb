@@ -23,13 +23,21 @@
 </div>
 
 <div class="twelve wide column">
+  <% flash.each do |key, value| %>
+            <% if key.eql? "error" %>
+              <div class="ui negative message alert alert-<%= key %>"><%= value %></div>
+            <% elsif key.eql? "notice" %>
+              <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+            <% flash.clear %>
+            <% end %>
+          <% end %>
 <h1 class="text">Course Applications</h1>
 <div class="ui divider"></div>
   <table class="ui celled table">
   <thead>
     <tr>
       <th>Course</th>
-      <th>Current Status</th>
+      <th>Received</th>
       <th>Option</th>
     </tr>
   </thead>
@@ -38,7 +46,10 @@
     <tr>
       <td><%= app.course_name%></td>
       <td class="warning"><i class="attention icon"></i><%= app.is_received%></td>
-      <td><button class="ui small green button" name="edit-btn">Edit Status</button> 
+      <td><button type="button" class="ui small green button" name="edit_btn">
+        <input type="hidden" name="ref_no" value="<%= app.ref_no %>" form="modal-edit-form"></input>
+        Edit Status
+      </button> 
       <button class="ui small red button">Delete</button></td>
     </tr>
     <%end%>
@@ -46,29 +57,26 @@
   </table>
 </div>
 
-<div class="ui tiny modal">
+<div class="ui mini modal">
   <i class="close icon"></i>
   <div class="header">
     Edit Status
   </div>
  <div class="content">
-    <form class="ui form">
+    <%= form_tag(admin_app_profile_editstatus_path, method: "post", class: "ui form", id: "modal-edit-form") do %>
         <div class="field">
-          <label>Status</label>
-          <select class="ui search dropdown">
-            <option value="">Select Status</option>
-            <option value="1">Accepted</option>
-            <option value="2">Rejected</option>
+          <label>Received</label>
+          <select class="ui search dropdown" name="is_received">
+            <option value="">Select Received Status</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
         </div>
-    </form>
+     <% end %>
   </div>
   <div class="actions">
-    <div class="ui positive button">
+    <button class="ui positive button" form="modal-edit-form" action="submit" method="post">
       Save
-    </div>
-    <div class="ui red button">
-     Cancel
     </div>
   </div>
 </div>
@@ -80,8 +88,8 @@
   .dropdown()
 ;
    });
-  $('button[name=edit-btn]').click(function(){
-      $('.tiny.modal')
+  $('button[name=edit_btn]').click(function(){
+      $('.mini.modal')
       .modal('show'); 
         $('select.dropdown')
   .dropdown()
