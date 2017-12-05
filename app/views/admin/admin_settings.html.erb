@@ -3,10 +3,10 @@
 <div class="ui text container">
   <div class="title">
   <h1 class="header">Edit School Details</h1>
-</div>
+  </div>
   <div class="ui divider"></div>
-<%= form_tag(sessions_path, method: "post", class: "ui form") do %>
-    <div class="field">
+  <%= form_tag(sessions_path, method: "post", class: "ui form") do %>
+  <div class="field">
     <%= label_tag(:"School Name") %>
     <%= text_field_tag(:sname, "", placeholder: "", value:@school.sname) %>
   </div>
@@ -14,17 +14,17 @@
     <%= label_tag(:"Email") %>
     <%= text_field_tag(:e_mail, "", placeholder: "", value:@school.email) %>
   </div>
-    <div class="field">
-      <%= label_tag(:"Address") %>
-    <%= text_field_tag(:address, "", placeholder: "", value:@school.address) %>
+  <div class="field">
+    <%= label_tag(:"Address") %>
+    <%= text_field_tag(:address, "", placeholder: "", value:@school.address)%>
   </div>
   <div class="field">
     <%= label_tag(:"Contact Number") %>
     <%= text_field_tag(:phone, "", placeholder: "", value:@school.phone) %>
   </div>
+  <%= hidden_field :school_id, :value => @temp.school_id %>
   <%= button_tag("Save", class: "ui button green", type: "submit") %>
-  
   <% end %>
-</form>
+
 </div>
 </div>

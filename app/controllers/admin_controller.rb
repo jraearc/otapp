@@ -25,7 +25,25 @@ def admin_app_profile
 	#need pa ng "where" clause kasi lahat lang ng inaapplyan ng student yung lalabas
 end
 def admin_settings
+	
+
+		#admin_userid:params[:userid])
+	#User.where(:email => "foo@bar.com")[0]
 	@school = School.find(cookies[:userid]) #change constant to session id
 	@school_admin = Admin.find(cookies[:userid]) #change constant to session id
+	@temp = Manage.find(cookies[:userid])
 end
+def save
+	#@temp = Manage.find(cookies[:userid])
+	#@school = School.find(Manage.find(cookies[:userid]))
+	@school = School.find(params[:school_id])
+	#change constant to session id
+	@school.sname = params[:sname]
+	@school.email = params[:email]
+	@school.address = params[:address]
+	@school.phone = params[:phone]
+	@school.save
+	flash[:notice] = "Settings saved"
+	redirect_to admin_settings_path
+end 
 end

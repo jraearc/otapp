@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'admin/', to: 'admin#admin_home'
   get 'admin/home', to: 'admin#admin_home', as: 'admin_home'
   get 'admin/settings', to: 'admin#admin_settings', as: 'admin_settings'
+  post 'admin/settings/save', to: "admin#save"
   get 'admin/app_profile/:id(.:format)', to: 'admin#admin_app_profile', as: 'admin_app_profile'
   get 'admin/courses', to: 'admin#admin_courses', as: 'admin_courses'
 
