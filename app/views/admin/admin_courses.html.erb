@@ -23,6 +23,14 @@
 
 
 <div class="twelve wide column">
+  <% flash.each do |key, value| %>
+            <% if key.eql? "error" %>
+              <div class="ui negative message alert alert-<%= key %>"><%= value %></div>
+            <% elsif key.eql? "notice" %>
+              <div class="ui positive message alert alert-<%= key %>"><%= value %></div>
+            <% flash.clear %>
+            <% end %>
+          <% end %>
   <h1 class="text">Courses Offered</h1>
   <div class="ui divider"></div>
     <table class="ui celled table">
@@ -40,7 +48,16 @@
       <td><%= course.course_name%></td>
       <td><%= course.sector%></td>
       <td><%= course.tuition_fee%></td>
-      <td><button class="ui small green button" name="edit-btn">Edit</button> <button class="ui small red button">Remove</button></td>
+      <td>
+        <%= form_tag(admin_courses_deletecourse_path, method: "post", class: "ui form") do %>
+        <button class="ui small green button" name="edit-btn">
+        Edit
+        </button> 
+        <button class="ui small red button" action="submit" method="post">
+        <input type="hidden" name="course_offered_id" value="<%=course.course_offered_id %>"></input>
+        Remove
+        </button> </td>
+        <%end%>
     </tr>
     <%end%>
   </tbody>

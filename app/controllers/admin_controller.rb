@@ -5,7 +5,7 @@ def admin_courses
 	@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
 	@all_courses = Course.order(:course_name)
 	@school = School.find(@temp.school_id) #change constant to session id
-	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('courses.course_name, courses.sector, courses.tuition_fee').where(school_id:@temp.school_id)
+	@courses_offered = Offer.joins('join courses on offers.course_offered_id = courses.course_id').select('offers.course_offered_id','courses.course_name, courses.sector, courses.tuition_fee').where(school_id:@temp.school_id)
 end
 def admin_home
 	@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
@@ -44,7 +44,19 @@ def save
 	@school.save
 	flash[:notice] = "Settings saved"
 	redirect_to admin_settings_path
+
+end 
+def delete_course
+	# begin
+		@course = Offer.where(course_offered_id: params[:course_offered_id]).delete_all
+		flash[:notice] = "Course removed."
+		redirect_to admin_courses_path
+	# rescue
+	# 	flash[:error] = "Error editing application."
+	# 	redirect_to student_profile_path
+	# end
 end
+
 def edit_status
 	begin
 		@student = Student.joins('join applies on students.student_userid = applies.student_userid').where("applies.ref_no = ? ", Integer(params[:ref_no])).first
