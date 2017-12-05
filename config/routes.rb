@@ -17,9 +17,11 @@ Rails.application.routes.draw do
   post 'admin/settings/save', to: "admin#save"
   get 'admin/app_profile/:id(.:format)', to: 'admin#admin_app_profile', as: 'admin_app_profile'
   post 'admin/app_profile/editstatus', to: 'admin#edit_status'
+  post 'admin/app_profile/deleteapp', to: 'admin#delete_application'
   get 'admin/courses', to: 'admin#admin_courses', as: 'admin_courses'
   post 'admin/courses/edittuition', to: 'admin#edit_tuition'
   post 'admin/courses/deletecourse', to: 'admin#delete_course'
+  post 'admin/courses/addcourse', to: 'admin#add_course'
 
 
   # Defines student pages

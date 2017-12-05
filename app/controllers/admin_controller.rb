@@ -59,15 +59,38 @@ end
 
 def edit_status
 	begin
-		@temp = Manage.select('school_id').where(admin_userid:cookies[:userid]).first
-		@student = Apply.select('student_userid,is_received').where(ref_no:params[:ref_no]).first
-		@student.is_received = params[:is_received]
-		@student.save
+		@student = Student.joins('join applies on students.student_userid = applies.student_userid').where("applies.ref_no = ? ", Integer(params[:ref_no])).first
+		@apply = Apply.where(ref_no: Integer(params[:ref_no])).update_all(is_received: params[:is_received])
 		flash[:notice] = "Received status edited successfully."
-		redirect_to :back
+		redirect_to admin_app_profile_path(@student.student_userid)
 	rescue
 		flash[:error] = "Error editing received status."
-		redirect_to :back
+		redirect_to admin_app_profile_path(@student.student_userid)
+	end
+end
+
+def delete_application
+	begin
+		@student = Student.joins('join applies on students.student_userid = applies.student_userid').where("applies.ref_no = ? ", Integer(params[:ref_no])).first
+		@apply = Apply.where(ref_no: params[:ref_no]).delete_all
+		@application = Application.where(ref_no: params[:ref_no]).delete_all
+		flash[:notice] = "Application deleted."
+		redirect_to admin_app_profile_path(@student.student_userid)
+	rescue
+		flash[:error] = "Error deleting application."
+		redirect_to admin_app_profile_path(@student.student_userid)
+	end
+end
+def add_course
+	begin
+		@temp = Manage.select('school_id').where(admin_userid: cookies[:userid]).first
+		@course = Offer.new(:school_id => @temp.school_id, :course_offered_id => params[:course_name] )
+		@course.save
+		flash[:notice] = "Added course offered to database."
+		redirect_to admin_courses_path
+	rescue
+		flash[:error] = "Error adding course offered to database."
+		redirect_to admin_courses_path
 	end
 end
 
@@ -87,14 +110,17 @@ end
 def check_if_admin
 	if !cookies.key?(:userid)
 		redirect_to root_url
+		return
 	end
 	@admin = Admin.where(admin_userid: cookies[:userid])
 	if @admin.blank?
 		@student = Student.where(student_userid: cookies[:userid])
 		if @student.blank?
 			redirect_to root_url
+			return
 		else
 			redirect_to student_home_path
+			return
 		end
 	end
 end
