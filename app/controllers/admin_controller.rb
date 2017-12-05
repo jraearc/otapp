@@ -48,7 +48,7 @@ def save
 end 
 def delete_course
 	# begin
-		@course = Offer.where(course_offered_id: params[:course_offered_id]).delete_all
+		@course = Offer.where(course_offered_id: params[:course_offered_no]).delete_all
 		flash[:notice] = "Course removed."
 		redirect_to admin_courses_path
 	# rescue
@@ -96,7 +96,7 @@ end
 
 def edit_tuition
 	begin
-		@course = Course.select('*').where(course_id: params[:course_offered_id]).first
+		@course = Course.select('*').where(course_id: params[:course_offered_no]).first
 		@course.tuition_fee = params[:tuition_fee]
 		@course.save
 		flash[:notice] = "Application edited successfully."

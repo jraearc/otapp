@@ -51,11 +51,11 @@
       <td>
         <%= form_tag(admin_courses_deletecourse_path, method: "post", class: "ui form") do %>
         <button type="button" class="ui small green button" name="edit-btn">
-          <input type="hidden" name="course_offered_id" value="<%= course.course_offered_id %>" form="modal-edit-form"></input>
+          <input type="hidden" name="course_offered_no[]" value="<%= course.course_offered_id %>" form="modal-edit-form"></input>
         Edit
         </button> 
         <button class="ui small red button" action="submit" method="post">
-        <input type="hidden" name="course_offered_id" value="<%=course.course_offered_id %>"></input>
+        <input type="hidden" name="course_offered_no" value="<%=course.course_offered_id %>"></input>
         Remove
         </button> </td>
         <%end%>
