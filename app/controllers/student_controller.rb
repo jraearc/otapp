@@ -14,7 +14,7 @@ end
 def student_profile
 	@user_student = User.find(cookies[:userid])
 	@stud_deets = Student.find(cookies[:userid])
-	@apps = Apply.joins('join applications on applies.ref_no = applications.ref_no join courses on courses.course_id = applications.course_id join schools on applies.school_id = schools.school_id').select('applies.student_userid, schools.school_id, schools.sname, applies.is_received, courses.course_name').where(student_userid:cookies[:userid])
+	@apps = Apply.joins('join applications on applies.ref_no = applications.ref_no join courses on courses.course_id = applications.course_id join schools on applies.school_id = schools.school_id').select('applies.student_userid, schools.school_id, schools.sname, applies.ref_no, applies.is_received, courses.course_name').where(student_userid:cookies[:userid])
 	@all_schools = School.order(:sname)
 	@all_courses = Course.order(:course_name) 
 	#need pa ng "where" clause kasi lahat lang ng inaapplyan ng student yung lalabas
@@ -43,7 +43,44 @@ def save
 	redirect_to student_settings_path
 end
 def add_application
-	flash[:notice] = "Application added to database."
-	redirect_to student_profile_path
+	begin
+		@course = Course.select('course_id').where(course_name: params[:course_name]).first
+		@school = School.select('school_id').where(sname: params[:school]).first
+		@application = Application.new(:course_id => @course.course_id)
+		@application.save
+		@apply = Apply.new(:student_userid => cookies[:userid], :school_id => @school.school_id, :ref_no => @application.ref_no, :is_received => 'No')
+		@apply.save
+		flash[:notice] = "Application added to database."
+		redirect_to student_profile_path
+	rescue
+		flash[:error] = "Error adding application to database."
+		redirect_to student_profile_path
+	end
+end
+
+def edit_application
+	begin
+		@course = Course.select('course_id').where(course_name: params[:course_name]).first
+		@application = Application.select('*').where(ref_no: params[:ref_no]).first
+		@application.course_id = @course.course_id
+		@application.save
+		flash[:notice] = "Application edited successfully."
+		redirect_to student_profile_path
+	rescue
+		flash[:error] = "Error editing application."
+		redirect_to student_profile_path
+	end
+end
+
+def delete_application
+	# begin
+		@apply = Apply.where(ref_no: params[:ref_no]).destroy()
+		@application = Application.where(ref_no: params[:ref_no]).destroy()
+		flash[:notice] = "Application deleted."
+		redirect_to student_profile_path
+	# rescue
+	# 	flash[:error] = "Error editing application."
+	# 	redirect_to student_profile_path
+	# end
 end
 end
